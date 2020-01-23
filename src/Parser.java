@@ -33,4 +33,45 @@ public class Parser {
             throw new RuntimeException("No end of input reached!");
         }
     }
+
+    private Visitable start(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable regExp(Visitable visitable) {
+        // TODO Implement
+        Visitable termTree = term(null);
+        return re(termTree);
+    }
+
+    private Visitable re(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable term(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable factor(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable hOp(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable elem(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
+
+    private Visitable alphanum(Visitable visitable) {
+        // TODO Implement
+        return  null;
+    }
 }
