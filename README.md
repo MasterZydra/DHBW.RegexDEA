@@ -9,7 +9,7 @@ Folgende Konstruktionsvorschrift soll als Grundlage dienen.
     - r1 | r2 (Alternative)
     - ri* (Kleenesche Hülle)
     - ri+ (Positive Hülle)
-    - ri? (Option)
+    - ri? (Option)  
     ebenfalls reguläre Ausdrücke.
 - Der Einfachheit halber seien Whitespaces nicht zulässig
 
