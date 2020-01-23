@@ -11,8 +11,8 @@ Ohne **main** und **IDE**-Dateien.
 
 ## Aufbau
 ```
-                regulärer Ausdruck
-                        ↓
+               regulärer Ausdruck
+                      ↓
   ┌--------------------------------------------┐
   |         rekursiver Top-Down-Parser         |
   |--------------------------------------------|
