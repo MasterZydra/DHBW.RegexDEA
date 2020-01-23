@@ -40,7 +40,7 @@ Folgende Konstruktionsvorschrift soll als Grundlage dienen.
   |                (followpos)                 |
   └--------------------------------------------┘
                       ↓
-              follopos-Tabelle +
+              followpos-Tabelle +
       firstpos(Wurzelverzeichnis d. Syntaxbaumes)
                       ↓
   ┌--------------------------------------------┐
