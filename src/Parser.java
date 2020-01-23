@@ -40,22 +40,61 @@ public class Parser {
 
     private Visitable start(Visitable parameter) {
         // TODO Implement
-        return  null;
+        if (this.curChar() == '(') {
+            this.match('(');
+            Visitable regExp = this.regExp(null);
+            this.match(')');
+            this.match('#');
+            this.assertEndOfInput();
+
+            Visitable leaf = new OperandNode("#");
+            Visitable root = new BinOpNode("°", regExp, leaf);
+            return root;
+        } else if (this.curChar() == '#') {
+            return new OperandNode("#");
+        } else {
+            throw new RuntimeException("Syntax error!");
+        }
     }
 
     private Visitable regExp(Visitable parameter) {
         // TODO Implement
+        if (this.curChar() == '0' /* 0..9, A..Z, a...z*/ ||
+                this.curChar() == '(') {
+            // RegExp -> Term RE'
+        } else {
+            throw new RuntimeException("Syntax error!");
+        }
         Visitable termTree = term(null);
         return re(termTree);
     }
 
     private Visitable re(Visitable parameter) {
         // TODO Implement
-        return  null;
+        if (this.curChar() == '|') {
+            match('|');
+            Visitable termTree = this.term(null);
+            Visitable root = new BinOpNode("|", parameter, termTree);
+            return this.re(root);
+        } else if (this.curChar() == ')') {
+            // RE' -> Eps
+        } else {
+            throw new RuntimeException("Syntax error!");
+        }
     }
 
     private Visitable term(Visitable parameter) {
         // TODO Implement
+        if (this.curChar() == '0' /* 0..9, A..Z, a...z*/) {
+            if (parameter != null) {
+                return this.term(new BinOpNode("°", parameter, this.factor(null)));
+            } else if (this.curChar() == '|' ||
+                    this.curChar() == ')') {
+                return parameter;
+            } else {
+                throw new RuntimeException("Syntax error!");
+            }
+        }
         return  null;
     }
 
@@ -76,6 +115,12 @@ public class Parser {
 
     private Visitable alphanum(Visitable parameter) {
         // TODO Implement
-        return  null;
+        if (Character.isLetter(this.curChar()) ||
+                Character.isDigit(this.curChar())) {
+            String symbol = Character.toString(this.curChar());
+            return new OperandNode(symbol);
+        } else {
+            throw new RuntimeException("Syntax error!");
+        }
     }
 }
