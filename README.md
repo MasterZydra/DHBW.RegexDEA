@@ -36,15 +36,15 @@ Folgende Konstruktionsvorschrift soll als Grundlage dienen.
                       ↓
   ┌--------------------------------------------┐
   |                 2. Visitor                 |
-  |--------------------------------------------|   ()
+  |--------------------------------------------|   (jones1008)
   |                (followpos)                 |
   └--------------------------------------------┘
                       ↓
-              follopos-Tabelle +
+              followpos-Tabelle +
       firstpos(Wurzelverzeichnis d. Syntaxbaumes)
                       ↓
   ┌--------------------------------------------┐
-  |                 DEA-Erzeuger               |  ()
+  |                 DEA-Erzeuger               |  (trigeha)
   └--------------------------------------------┘
                       ↓
             Übergangsmatrix des DEA
