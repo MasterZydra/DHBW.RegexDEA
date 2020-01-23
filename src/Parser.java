@@ -34,43 +34,43 @@ public class Parser {
         }
     }
 
-    private Visitable start(Visitable visitable) {
+    private Visitable start(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable regExp(Visitable visitable) {
+    private Visitable regExp(Visitable subTree) {
         // TODO Implement
         Visitable termTree = term(null);
         return re(termTree);
     }
 
-    private Visitable re(Visitable visitable) {
+    private Visitable re(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable term(Visitable visitable) {
+    private Visitable term(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable factor(Visitable visitable) {
+    private Visitable factor(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable hOp(Visitable visitable) {
+    private Visitable hOp(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable elem(Visitable visitable) {
+    private Visitable elem(Visitable subTree) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable alphanum(Visitable visitable) {
+    private Visitable alphanum(Visitable subTree) {
         // TODO Implement
         return  null;
     }
