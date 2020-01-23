@@ -9,6 +9,7 @@ Projekt aus dem 4. Semester im Fach Informatik - Compilerbau
 
 Ohne **main** und **IDE**-Dateien.
 
+## Aufbau
 ```
   regulärer Ausdruck
         ↓
