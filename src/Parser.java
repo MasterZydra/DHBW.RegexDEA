@@ -43,38 +43,38 @@ public class Parser {
         return  null;
     }
 
-    private Visitable regExp(Visitable subTree) {
+    private Visitable regExp(Visitable parameter) {
         // TODO Implement
         Visitable termTree = term(null);
         return re(termTree);
     }
 
-    private Visitable re(Visitable subTree) {
+    private Visitable re(Visitable parameter) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable term(Visitable subTree) {
+    private Visitable term(Visitable parameter) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable factor(Visitable subTree) {
+    private Visitable factor(Visitable parameter) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable hOp(Visitable subTree) {
+    private Visitable hOp(Visitable parameter) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable elem(Visitable subTree) {
+    private Visitable elem(Visitable parameter) {
         // TODO Implement
         return  null;
     }
 
-    private Visitable alphanum(Visitable subTree) {
+    private Visitable alphanum(Visitable parameter) {
         // TODO Implement
         return  null;
     }
