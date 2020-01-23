@@ -1,13 +1,17 @@
 # DHBW.RegexDEA
 Projekt aus dem 4. Semester im Fach Informatik - Compilerbau
 
-## Abgabe
-**Quellcode:**
-- Komponenten
-- Schnittstellen
-- Standalone-Tests
-
-Ohne **main** und **IDE**-Dateien.
+## Einschränkung der Sprache der regulären Ausdrücke
+Folgende Konstruktionsvorschrift soll als Grundlage dienen.  
+ - jeder Buchstabe und jede Ziffer von 0 bis 9 ist ein regulärer Ausdruck
+- seien zwei reguläre Ausdrücke r1 und r2 gegeben, so sind
+    - r1r2 (Konkatenation)
+    - r1 | r2 (Alternative)
+    - ri* (Kleenesche Hülle)
+    - ri+ (Positive Hülle)
+    - ri? (Option)
+    ebenfalls reguläre Ausdrücke.
+- Der Einfachheit halber seien Whitespaces nicht zulässig
 
 ## Aufbau
 ```
@@ -49,3 +53,11 @@ Ohne **main** und **IDE**-Dateien.
   |              Generischer Lexer             |
   └--------------------------------------------┘
 ```
+
+## Abgabe
+**Quellcode:**
+- Komponenten
+- Schnittstellen
+- Standalone-Tests
+
+Ohne **main** und **IDE**-Dateien.
