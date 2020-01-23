@@ -11,37 +11,41 @@ Ohne **main** und **IDE**-Dateien.
 
 ## Aufbau
 ```
-  regulärer Ausdruck
-        ↓
+                regulärer Ausdruck
+                        ↓
+  ┌--------------------------------------------┐
+  |         rekursiver Top-Down-Parser         |
   |--------------------------------------------|
-  | rekursiver Top-Down-Parser                 |
   | (erzeugt mit syntaxgesteuerter Übersetzung |
-  | einen Syntaxbaum)                          |
+  |          einen Syntaxbaum)                 |
+  └--------------------------------------------┘
+                      ↓
+                  Syntaxbaum
+                      ↓
+  ┌--------------------------------------------┐
+  |               1. Visitor                   |
   |--------------------------------------------|
-        ↓
-  Syntaxbaum
-        ↓
+  |      (nullable, firstpos, lastpos          |
+  └--------------------------------------------┘
+                      ↓
+                  Syntaxbaum
+                      ↓
+  ┌--------------------------------------------┐
+  |                 2. Visitor                 |
   |--------------------------------------------|
-  | 1. Visitor                                 |
-  | (nullable, firstpos, lastpos)              |
-  |--------------------------------------------|
-        ↓
-  Syntaxbaum
-        ↓
-  |--------------------------------------------|
-  | 2. Visitor                                 |
-  | (followpos)                                |
-  |--------------------------------------------|
-        ↓
-  follopos-Tabelle + firstpos(Wurzelverzeichnis d. Syntaxbaumes)
-        ↓
-  |--------------------------------------------|
-  | DEA-Erzeuger                               |
-  |--------------------------------------------|
-        ↓
-  Übergangsmatrix des DEA
-        ↓
-  |--------------------------------------------|
-  | Generischer Lexer                          |
-  |--------------------------------------------|
+  |             (followpos)                    |
+  └--------------------------------------------┘
+                      ↓
+              follopos-Tabelle +
+      firstpos(Wurzelverzeichnis d. Syntaxbaumes)
+                      ↓
+  ┌--------------------------------------------┐
+  |                 DEA-Erzeuger               |
+  └--------------------------------------------┘
+                      ↓
+            Übergangsmatrix des DEA
+                      ↓
+  ┌--------------------------------------------┐
+  |              Generischer Lexer             |
+  └--------------------------------------------┘
 ```
