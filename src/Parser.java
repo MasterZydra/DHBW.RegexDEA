@@ -34,7 +34,11 @@ public class Parser {
         }
     }
 
-    private Visitable start(Visitable subTree) {
+    private char curChar() {
+        return this.input.charAt(this.position);
+    }
+
+    private Visitable start(Visitable parameter) {
         // TODO Implement
         return  null;
     }
