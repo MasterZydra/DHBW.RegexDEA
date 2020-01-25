@@ -26,13 +26,13 @@ public class ParserTest {
     }
 
     @Test(expected = Exception.class)
-    public void invalidSyntax_Operand() {
+    public void invalidSyntax_Operator() {
         Parser parser = new Parser("(+a)#");
         Visitable syntaxTree = parser.parse();
     }
 
     @Test(expected = Exception.class)
-    public void invalidSyntax_OperandUnknown() {
+    public void invalidSyntax_OperatorUnknown() {
         Parser parser = new Parser("(a.b|cd)#");
         Visitable syntaxTree = parser.parse();
     }
