@@ -6,7 +6,6 @@ public class Parser {
 
     public Parser(String input) {
         this.position = 0;
-
         this.input = input;
     }
 
@@ -143,7 +142,7 @@ public class Parser {
         {
             char curChar = this.curChar();
             this.match(curChar);
-            String curStr = Character.toString(this.curChar());
+            String curStr = Character.toString(curChar);
             return new UnaryOpNode(curStr, parameter);
         }
         else throw new RuntimeException("Syntax error!");
