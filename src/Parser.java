@@ -109,13 +109,35 @@ public class Parser {
     }
 
     private Visitable factor(Visitable parameter) {
-        // TODO Implement
-        return  null;
+        if (Character.isLetter(this.curChar()) ||   // a..z, A..z
+            Character.isDigit(this.curChar()) ||    // 0..9
+            this.curChar() == '(' ||
+            this.curChar() == '|' ||
+            this.curChar() == ')')
+        {
+            // Prepare return value
+            Visitable elem = this.elem(null);
+            return this.hOp(elem);
+        }
+        else throw new RuntimeException("Syntax error!");
     }
 
     private Visitable hOp(Visitable parameter) {
-        // TODO Implement
-        return  null;
+        if (Character.isLetter(this.curChar()) ||   // a..z, A..z
+            Character.isDigit(this.curChar()) ||    // 0..9
+            this.curChar() == '(')
+        {
+            return parameter;
+        }
+        else if (this.curChar() == '*' ||
+                 this.curChar() == '+' ||
+                 this.curChar() == '?')
+        {
+            this.match(this.curChar());
+            String curChar = Character.toString(this.curChar());
+            return new UnaryOpNode(curChar, parameter);
+        }
+        else throw new RuntimeException("Syntax error!");
     }
 
     private Visitable elem(Visitable parameter) {
