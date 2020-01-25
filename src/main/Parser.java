@@ -1,11 +1,17 @@
+package main;
+
 public class Parser {
     private final String input;
     private int position;
 
-    private Parser(String input) {
+    public Parser(String input) {
         this.position = 0;
 
         this.input = input;
+    }
+
+    public Visitable parse() {
+        return this.start(null);
     }
 
     private void match(char symbol) {
@@ -15,7 +21,7 @@ public class Parser {
             throw new RuntimeException("Syntax error!");
         }
 
-        if (this.position <= this.input.length())
+        if (this.position >= this.input.length())
         {
             throw new RuntimeException("End of input reached!");
         }
@@ -59,8 +65,8 @@ public class Parser {
     }
 
     private Visitable regExp(Visitable parameter) {
-        if (Character.isLetter(this.curChar()) ||
-            Character.isDigit(this.curChar()) ||
+        if (Character.isLetter(this.curChar()) ||   // a..z, A..z
+            Character.isDigit(this.curChar()) ||    // 0..9
             this.curChar() == '(')
         {
             // Prepare return value
@@ -125,7 +131,9 @@ public class Parser {
     private Visitable hOp(Visitable parameter) {
         if (Character.isLetter(this.curChar()) ||   // a..z, A..z
             Character.isDigit(this.curChar()) ||    // 0..9
-            this.curChar() == '(')
+            this.curChar() == '(' ||
+            this.curChar() == '|' ||
+            this.curChar() == ')')
         {
             return parameter;
         }
@@ -133,9 +141,10 @@ public class Parser {
                  this.curChar() == '+' ||
                  this.curChar() == '?')
         {
-            this.match(this.curChar());
-            String curChar = Character.toString(this.curChar());
-            return new UnaryOpNode(curChar, parameter);
+            char curChar = this.curChar();
+            this.match(curChar);
+            String curStr = Character.toString(this.curChar());
+            return new UnaryOpNode(curStr, parameter);
         }
         else throw new RuntimeException("Syntax error!");
     }
@@ -159,9 +168,10 @@ public class Parser {
         if (Character.isLetter(this.curChar()) ||
             Character.isDigit(this.curChar()))
         {
-            this.match(this.curChar());
+            char curChar = this.curChar();
+            this.match(curChar);
             // Prepare return value
-            String symbol = Character.toString(this.curChar());
+            String symbol = Character.toString(curChar);
             return new OperandNode(symbol);
         }
         else throw new RuntimeException("Syntax error!");
