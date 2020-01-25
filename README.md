@@ -61,3 +61,11 @@ Folgende Konstruktionsvorschrift soll als Grundlage dienen.
 - Standalone-Tests
 
 Ohne **main** und **IDE**-Dateien.
+
+## Bewertung
+|               Kriterium               | Max. Punkte |
+|:-------------------------------------:|:-----------:|
+| Korrekte Umsetzung                    |      50     |
+| Kompilierfähigkeit                    |      5      |
+| Einhalten der Schnittstellenvorgaben  |      20     |
+| Einhalten der Programmierkonventionen |      25     |
