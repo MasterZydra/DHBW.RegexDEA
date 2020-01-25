@@ -44,8 +44,8 @@ public class ParserTest {
 
         Visitable right = new OperandNode("b");
         Visitable left = new OperandNode("a");
-        Visitable subNode = new BinOpNode("|", left, right);
-        left = new UnaryOpNode("*", subNode);
+        left = new BinOpNode("|", left, right);
+        left = new UnaryOpNode("*", left);
         right = new OperandNode("a");
         left = new BinOpNode("°", left, right);
         right = new OperandNode("b");
