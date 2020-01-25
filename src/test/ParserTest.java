@@ -2,8 +2,7 @@ package test;
 
 import static org.junit.Assert.*;
 
-import main.Parser;
-import main.Visitable;
+import main.*;
 import org.junit.Test;
 
 public class ParserTest {
