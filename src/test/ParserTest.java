@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.*;
+import static test.Comparer.*;
 
 import main.*;
 import org.junit.Test;
@@ -34,6 +35,27 @@ public class ParserTest {
     public void invalidSyntax_OperatorUnknown() {
         Parser parser = new Parser("(a.b|cd)#");
         Visitable syntaxTree = parser.parse();
+    }
+
+    @Test
+    public void validSyntax1() {
+        Parser parser = new Parser("((a|b)*abb)#");
+        Visitable syntaxTree = parser.parse();
+
+        Visitable right = new OperandNode("b");
+        Visitable left = new OperandNode("a");
+        Visitable subNode = new BinOpNode("|", left, right);
+        left = new UnaryOpNode("*", subNode);
+        right = new OperandNode("a");
+        left = new BinOpNode("°", left, right);
+        right = new OperandNode("b");
+        left = new BinOpNode("°", left, right);
+        right = new OperandNode("b");
+        left = new BinOpNode("°", left, right);
+        right = new OperandNode("#");
+        Visitable refTree = new BinOpNode("°", left, right);
+
+        assertTrue(treeCmp(syntaxTree, refTree));
     }
 }
 
