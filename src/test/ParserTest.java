@@ -38,7 +38,23 @@ public class ParserTest {
     }
 
     @Test
-    public void validSyntax1() {
+    public void validSyntax_Concat() {
+        Parser parser = new Parser("(abc)#");
+        Visitable syntaxTree = parser.parse();
+
+        Visitable right = new OperandNode("b");
+        Visitable left = new OperandNode("a");
+        left = new BinOpNode("°", left, right);
+        right = new OperandNode("c");
+        left = new BinOpNode("°", left, right);
+        right = new OperandNode("#");
+        Visitable refTree = new BinOpNode("°", left, right);
+
+        assertTrue(treeCmp(syntaxTree, refTree));
+    }
+
+    @Test
+    public void validSyntax_Complex() {
         Parser parser = new Parser("((a|b)*abb)#");
         Visitable syntaxTree = parser.parse();
 
