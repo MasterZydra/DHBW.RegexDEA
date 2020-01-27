@@ -5,10 +5,15 @@ public class Parser {
     private int position;
 
     public Parser(String input) {
+        // Init properties
         this.position = 0;
+        // Save parameter
         this.input = input;
     }
 
+    /*
+    * Parse given input into Visitable and check syntax.
+     */
     public Visitable parse() {
         return this.start(null);
     }
@@ -29,9 +34,8 @@ public class Parser {
     }
 
     /*
-        // 1. wird benoetigt bei der Regel Start -> '(' RegExp ')''#'
-        // 2. wird benoetigt bei der Regel Start -> '#'
-        // 3. wird sonst bei keiner anderen Regel benoetigt
+    * Check if position is not longer than the length of the input.
+    * Necessary in start() for '#' and '('RegExp')''#'.
      */
     private void assertEndOfInput() {
         if (this.position < this.input.length()) {
@@ -39,9 +43,14 @@ public class Parser {
         }
     }
 
+    /*
+    * Get current character
+     */
     private char curChar() {
         return this.input.charAt(this.position);
     }
+
+    /********* Functions for none-terminal characters *********/
 
     private Visitable start(Visitable parameter) {
         if (this.curChar() == '(') {
