@@ -1,3 +1,5 @@
+package main;
+
 public class OperandNode extends SyntaxNode implements Visitable {
     public int position;
     public String symbol;
