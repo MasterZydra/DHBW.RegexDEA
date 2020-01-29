@@ -14,6 +14,8 @@ public class Parser {
      */
     private int position;
 
+    private int leafPos;
+
     /**
      * Create new instance of Parser
      * @param input Regular expression
@@ -21,6 +23,7 @@ public class Parser {
     public Parser(String input) {
         // Init properties
         this.position = 0;
+        this.leafPos = 1;
         // Save parameter
         this.input = input;
     }
@@ -82,13 +85,16 @@ public class Parser {
             this.assertEndOfInput();
             // Prepare return value
             Visitable leaf = new OperandNode("#");
+            ((OperandNode) leaf).position = this.leafPos;
             return new BinOpNode("°", regExp, leaf);
         }
         else if (this.curChar() == '#') {
             this.match('#');
             this.assertEndOfInput();
             // Prepare return value
-            return new OperandNode("#");
+            Visitable leaf = new OperandNode("#");
+            ((OperandNode) leaf).position = this.leafPos;
+            return leaf;
         }
         else throw new RuntimeException("Syntax error!");
     }
@@ -201,7 +207,10 @@ public class Parser {
             this.match(curChar);
             // Prepare return value
             String symbol = Character.toString(curChar);
-            return new OperandNode(symbol);
+            OperandNode opNode = new OperandNode(symbol);
+            opNode.position = this.leafPos;
+            this.leafPos++;
+            return opNode;
         }
         else throw new RuntimeException("Syntax error!");
     }
