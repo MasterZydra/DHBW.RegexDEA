@@ -1,5 +1,7 @@
 package main;
 
+// @author 8093702
+
 import java.util.*;
 
 public class DFAGenerator
