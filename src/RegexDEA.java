@@ -1,6 +1,8 @@
 import main.*;
 
+import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class RegexDEA {
     public static void main(String[] args){
@@ -22,5 +24,21 @@ public class RegexDEA {
             System.out.println("An error occurred: " + e.getMessage());
             return;
         }
+
+        // 2. FirstVisitor
+        FirstVisitor firstVisitor = new FirstVisitor();
+        DepthFirstIterator.traverse(syntaxTree, firstVisitor);
+
+        // 3. SecondVisitor
+        SecondVisitor secondVisitor = new SecondVisitor();
+        DepthFirstIterator.traverse(syntaxTree, secondVisitor);
+        SortedMap<Integer, FollowposTableEntry> followPosTable = secondVisitor.getFollowPosTableEntries();
+
+        // 4. DFA Generator
+        DFAGenerator dfaGenerator = new DFAGenerator(followPosTable, ((SyntaxNode) syntaxTree).firstpos);
+        dfaGenerator.fillTransitionTable();
+        Map<DFAState, Map<Character, DFAState>> transTable = dfaGenerator.getStateTransitionTable();
+
+        dfaGenerator.print();
     }
 }
