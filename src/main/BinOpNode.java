@@ -1,3 +1,5 @@
+package main;
+
 public class BinOpNode extends SyntaxNode implements Visitable {
     public String operator;
     public Visitable left;

@@ -1,3 +1,5 @@
+package main;
+
 public class UnaryOpNode extends SyntaxNode implements Visitable {
     public String operator;
     public Visitable subNode;
