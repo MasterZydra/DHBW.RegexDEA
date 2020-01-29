@@ -1,7 +1,7 @@
 package main;
 
 /** Check syntax of given input and parse it to a syntax tree
- * @author David Hein
+ * @author 6439456
  */
 
 public class Parser {
