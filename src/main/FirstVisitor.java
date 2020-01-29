@@ -18,7 +18,7 @@ public class FirstVisitor implements Visitor {
 
     @Override
     public void visit(BinOpNode node) {
-        if (node.operator=="|")
+        if (node.operator.equals("|"))
         {
             node.nullable=((SyntaxNode)node.left).nullable | ((SyntaxNode)node.right).nullable;
 
@@ -29,7 +29,7 @@ public class FirstVisitor implements Visitor {
             node.lastpos.addAll(((SyntaxNode)node.right).lastpos);
         }
 
-        if (node.operator=="°")
+        if (node.operator.equals("°"))
         {
             node.nullable=((SyntaxNode)node.left).nullable & ((SyntaxNode)node.right).nullable;
 
@@ -53,20 +53,20 @@ public class FirstVisitor implements Visitor {
 
     @Override
     public void visit(UnaryOpNode node) {
-        if (node.operator=="*")
+        if (node.operator.equals("*"))
         {
             node.nullable=true;
             node.firstpos.addAll(((SyntaxNode)node.subNode).firstpos);
             node.lastpos.addAll(((SyntaxNode)node.subNode).lastpos);
         }
 
-        if (node.operator=="+"){
+        if (node.operator.equals("+")){
             node.nullable=((SyntaxNode)node.subNode).nullable;
             node.firstpos.addAll(((SyntaxNode)node.subNode).firstpos);
             node.lastpos.addAll(((SyntaxNode)node.subNode).lastpos);
         }
 
-        if (node.operator=="?"){
+        if (node.operator.equals("?")){
             node.nullable=true;
             node.firstpos.addAll(((SyntaxNode)node.subNode).firstpos);
             node.lastpos.addAll(((SyntaxNode)node.subNode).lastpos);
