@@ -1,9 +1,6 @@
 package test;
 
-import main.BinOpNode;
-import main.OperandNode;
-import main.UnaryOpNode;
-import main.Visitable;
+import main.*;
 
 public final class Comparer {
     public static boolean treeCmp(Visitable visitable1, Visitable visitable2)

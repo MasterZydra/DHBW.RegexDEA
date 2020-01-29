@@ -1,18 +1,46 @@
 package main;
 
+/** Check syntax of given input and parse it to a syntax tree
+ * @author David Hein
+ */
+
 public class Parser {
+    /**
+     * String to store the input for processing
+     */
     private final String input;
+    /**
+     * Contains position of current character
+     */
     private int position;
 
+    private int leafPos;
+
+    /**
+     * Create new instance of Parser
+     * @param input Regular expression
+     */
     public Parser(String input) {
+        // Init properties
         this.position = 0;
+        this.leafPos = 1;
+        // Save parameter
         this.input = input;
     }
 
+    /**
+     * Parse given input into Visitable and check syntax.
+     * @return Instance of Visitable
+     */
     public Visitable parse() {
         return this.start(null);
     }
 
+    /**
+     * Check if current character is expected character and
+     * check if position is less or equal length of input.
+     * @param symbol Symbol which is expected
+     */
     private void match(char symbol) {
         if ((this.input == null || "".equals(this.input)) ||
             (this.input.charAt(this.position) != symbol))
@@ -28,10 +56,9 @@ public class Parser {
         this.position++;
     }
 
-    /*
-        // 1. wird benoetigt bei der Regel Start -> '(' RegExp ')''#'
-        // 2. wird benoetigt bei der Regel Start -> '#'
-        // 3. wird sonst bei keiner anderen Regel benoetigt
+    /**
+    * Check if position is not longer than the length of the input.
+    * Necessary in start() for '#' and '('RegExp')''#'.
      */
     private void assertEndOfInput() {
         if (this.position < this.input.length()) {
@@ -39,9 +66,15 @@ public class Parser {
         }
     }
 
+    /**
+    * Get current character
+    * @return Character at current position
+     */
     private char curChar() {
         return this.input.charAt(this.position);
     }
+
+    /********* Functions for processing none-terminal characters *********/
 
     private Visitable start(Visitable parameter) {
         if (this.curChar() == '(') {
@@ -52,13 +85,16 @@ public class Parser {
             this.assertEndOfInput();
             // Prepare return value
             Visitable leaf = new OperandNode("#");
+            ((OperandNode) leaf).position = this.leafPos;
             return new BinOpNode("°", regExp, leaf);
         }
         else if (this.curChar() == '#') {
             this.match('#');
             this.assertEndOfInput();
             // Prepare return value
-            return new OperandNode("#");
+            Visitable leaf = new OperandNode("#");
+            ((OperandNode) leaf).position = this.leafPos;
+            return leaf;
         }
         else throw new RuntimeException("Syntax error!");
     }
@@ -171,7 +207,10 @@ public class Parser {
             this.match(curChar);
             // Prepare return value
             String symbol = Character.toString(curChar);
-            return new OperandNode(symbol);
+            OperandNode opNode = new OperandNode(symbol);
+            opNode.position = this.leafPos;
+            this.leafPos++;
+            return opNode;
         }
         else throw new RuntimeException("Syntax error!");
     }
