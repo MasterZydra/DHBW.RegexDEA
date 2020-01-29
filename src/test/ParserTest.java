@@ -1,5 +1,9 @@
 package test;
 
+/** Standalone tests for parser
+ * @author 6439456
+ */
+
 import static org.junit.Assert.*;
 import static test.Comparer.*;
 
