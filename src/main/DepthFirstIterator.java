@@ -25,5 +25,4 @@ public class DepthFirstIterator {
         }
         throw new RuntimeException("Instance root has a bad type!");
     }
-
 }
