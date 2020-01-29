@@ -90,4 +90,20 @@ public class DFAGenerator
     {
         return stateTransitionTable;
     }
+
+    public void print() {
+        String ret = "\n";
+        this.stateTransitionTable.forEach((k,v) -> {
+            System.out.println(k.positionsSet.toString());
+            if (k.isAcceptingState) System.out.println("  (Accepts)");
+            v.forEach((s, w) -> {
+                if (w != null) {
+                    System.out.println("  " + s.toString() + ": " + w.positionsSet.toString());
+                }
+                else {
+                    System.out.println("  " + s.toString() + ": null");
+                }
+            });
+        });
+    }
 }
