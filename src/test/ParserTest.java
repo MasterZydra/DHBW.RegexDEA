@@ -42,12 +42,16 @@ public class ParserTest {
         Parser parser = new Parser("(abc)#");
         Visitable syntaxTree = parser.parse();
 
-        Visitable right = new OperandNode("b");
         Visitable left = new OperandNode("a");
+        ((OperandNode) left).position = 1;
+        Visitable right = new OperandNode("b");
+        ((OperandNode) right).position = 2;
         left = new BinOpNode("°", left, right);
         right = new OperandNode("c");
+        ((OperandNode) right).position = 3;
         left = new BinOpNode("°", left, right);
         right = new OperandNode("#");
+        ((OperandNode) right).position = 4;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
@@ -58,10 +62,13 @@ public class ParserTest {
         Parser parser = new Parser("(a|b)#");
         Visitable syntaxTree = parser.parse();
 
-        Visitable right = new OperandNode("b");
         Visitable left = new OperandNode("a");
+        ((OperandNode) left).position = 1;
+        Visitable right = new OperandNode("b");
+        ((OperandNode) right).position = 2;
         left = new BinOpNode("|", left, right);
         right = new OperandNode("#");
+        ((OperandNode) right).position = 3;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
@@ -73,8 +80,10 @@ public class ParserTest {
         Visitable syntaxTree = parser.parse();
 
         Visitable subNode = new OperandNode("a");
+        ((OperandNode) subNode).position = 1;
         Visitable left = new UnaryOpNode("*", subNode);
         Visitable right = new OperandNode("#");
+        ((OperandNode) right).position = 2;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
@@ -86,8 +95,10 @@ public class ParserTest {
         Visitable syntaxTree = parser.parse();
 
         Visitable subNode = new OperandNode("a");
+        ((OperandNode) subNode).position = 1;
         Visitable left = new UnaryOpNode("+", subNode);
         Visitable right = new OperandNode("#");
+        ((OperandNode) right).position = 2;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
@@ -99,8 +110,10 @@ public class ParserTest {
         Visitable syntaxTree = parser.parse();
 
         Visitable subNode = new OperandNode("a");
+        ((OperandNode) subNode).position = 1;
         Visitable left = new UnaryOpNode("?", subNode);
         Visitable right = new OperandNode("#");
+        ((OperandNode) right).position = 2;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
@@ -111,17 +124,23 @@ public class ParserTest {
         Parser parser = new Parser("((a|b)*abb)#");
         Visitable syntaxTree = parser.parse();
 
-        Visitable right = new OperandNode("b");
         Visitable left = new OperandNode("a");
+        ((OperandNode) left).position = 1;
+        Visitable right = new OperandNode("b");
+        ((OperandNode) right).position = 2;
         left = new BinOpNode("|", left, right);
         left = new UnaryOpNode("*", left);
         right = new OperandNode("a");
+        ((OperandNode) right).position = 3;
         left = new BinOpNode("°", left, right);
         right = new OperandNode("b");
+        ((OperandNode) right).position = 4;
         left = new BinOpNode("°", left, right);
         right = new OperandNode("b");
+        ((OperandNode) right).position = 5;
         left = new BinOpNode("°", left, right);
         right = new OperandNode("#");
+        ((OperandNode) right).position = 6;
         Visitable refTree = new BinOpNode("°", left, right);
 
         assertTrue(treeCmp(syntaxTree, refTree));
