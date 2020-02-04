@@ -18,6 +18,7 @@ public class RegexDEA {
 
         // 1. Parse to syntax tree
         Parser parser = new Parser(input);
+        System.out.println("");
         try {
             syntaxTree = parser.parse();
         } catch (Exception e) {
@@ -40,6 +41,7 @@ public class RegexDEA {
         Map<DFAState, Map<Character, DFAState>> transTable = dfaGenerator.getStateTransitionTable();
 
         dfaGenerator.print();
+        System.out.println("");
 
         // 5. Generic Lexer
         GenericLexer lexer = new GenericLexer(transTable);
@@ -60,9 +62,9 @@ public class RegexDEA {
                 System.out.println("'" + input + "' is not accepted.");
             }
 
-            System.out.println("Check another input? (Y|N)");
+            System.out.println("Check another input? (NO)");
             input = scanner.next();
-            if(input.equals("N") || input.equals("n"))
+            if(input.toLowerCase().equals("no"))
             {
                 endProgram = true;
             }
