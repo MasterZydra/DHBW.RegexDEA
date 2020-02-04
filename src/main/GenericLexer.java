@@ -1,5 +1,9 @@
 package main;
 
+/*
+* Important: Do not evaluate. Only for test purposes.
+ */
+
 import java.util.Map;
 
 public class GenericLexer

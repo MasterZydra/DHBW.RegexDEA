@@ -1,5 +1,9 @@
 package test;
 
+/*
+ * Important: Do not evaluate. Only for test purposes.
+*/
+
 import main.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
