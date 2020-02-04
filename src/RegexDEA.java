@@ -40,5 +40,32 @@ public class RegexDEA {
         Map<DFAState, Map<Character, DFAState>> transTable = dfaGenerator.getStateTransitionTable();
 
         dfaGenerator.print();
+
+        // 5. Generic Lexer
+        GenericLexer lexer = new GenericLexer(transTable);
+
+        boolean endProgram = false, accept;
+        while (!endProgram)
+        {
+            System.out.println("String to check:");
+            input = scanner.next();
+
+            accept = lexer.match(input);
+            if(accept)
+            {
+                System.out.println("'" + input + "' is accepted.");
+            }
+            else
+            {
+                System.out.println("'" + input + "' is not accepted.");
+            }
+
+            System.out.println("Check another input? (Y|N)");
+            input = scanner.next();
+            if(input.equals("N") || input.equals("n"))
+            {
+                endProgram = true;
+            }
+        }
     }
 }
