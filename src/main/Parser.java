@@ -84,16 +84,16 @@ public class Parser {
             this.match('#');
             this.assertEndOfInput();
             // Prepare return value
-            Visitable leaf = new OperandNode("#");
-            ((OperandNode) leaf).position = this.leafPos;
+            OperandNode leaf = new OperandNode("#");
+            leaf.position = this.leafPos;
             return new BinOpNode("°", regExp, leaf);
         }
         else if (this.curChar() == '#') {
             this.match('#');
             this.assertEndOfInput();
             // Prepare return value
-            Visitable leaf = new OperandNode("#");
-            ((OperandNode) leaf).position = this.leafPos;
+            OperandNode leaf = new OperandNode("#");
+            leaf.position = this.leafPos;
             return leaf;
         }
         else throw new RuntimeException("Syntax error!");
