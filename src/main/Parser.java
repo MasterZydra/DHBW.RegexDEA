@@ -152,9 +152,7 @@ public class Parser {
     private Visitable factor(Visitable parameter) {
         if (Character.isLetter(this.curChar()) ||   // a..z, A..z
             Character.isDigit(this.curChar()) ||    // 0..9
-            this.curChar() == '(' ||
-            this.curChar() == '|' ||
-            this.curChar() == ')')
+            this.curChar() == '(')
         {
             // Prepare return value
             Visitable elem = this.elem(null);
